@@ -3,15 +3,15 @@
 
 <head>
   <meta charset="utf-8">
-  <title>N-M MKA 2022 raiutud puud</title>
+  <title>Kaart</title>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
 
   <!-- "Tõsine" font pealkirja jaoks -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" type="text/css" href="static/css/harjuta.css" />
+  <link rel="stylesheet" type="text/css" href="static/css/main.css" />
 
   <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
@@ -42,7 +42,6 @@
 
   <script src="config.js"></script>
 
-  <script src="punktid.js"></script>
   <script src="start.js" defer></script>
 </head>
 
@@ -50,26 +49,19 @@
   <!-- h1>Nõmme-Mustamäe maastikukaitsealal 2022 raiutud puude kaart</h1 -->
   <div id="Päis"> <!-- 15% -->
 
-    <div id="Pealkiri">
+    <div class="Pealkiri">
       Nõmme-Mustamäe maastikukaitsealal 2022 raiutud puude kaart
     </div>
 
     <div id="Tekst">
-      Miks see kaart on koostatud? Taustast:
-      <ul>
-        <li>
-          <a href="https://www.facebook.com/S%C3%BCtiste-metsa-kaitseks-106036332099091/" target="_new">
-            Sütiste metsa kaitseks
-          </a>
-           (Facebook grupp)
-        </li>
-        <li>
-          <a href="https://www.youtube.com/watch?v=apLJ0PCxqu8" target="_new">
-            Nõmme-Mustamäe terviseradade projekti arutelu
-          </a>
-          (YouTube)
-        </li>
-      </ul>
+
+      <p>
+        <a href="miks.html" target="_new">Miks see kaart on koostatud? (Taustast)</a> | 
+        <a href="metoodika.html" target="_new">Kuidas see kaart on koostatud? (Metoodika)</a>
+      </p>
+
+      <p>Tähistused: Punane - Natura 2000 ala; Roheline - Mõõtetiim Nr 4 (mõõtis põhiliselt Rahumäe metsa); Pruun - pesapuu. Markerile klõpsates kuvatakse puu ümbermõõt ja liik.</p>
+
     </div>
 
   </div>
@@ -85,16 +77,20 @@
       |
     </p -->
     <p>
-      Andmed kogunud N-M MKA kaitse aktivistid
-    </p>
-    <p>
-      |
-    </p>
-    <p>
       Kood: 
       <a href="https://github.com/NM-MKA-kaitseks/Kaart" target="_new">
         https://github.com/NM-MKA-kaitseks/Kaart
       </a>
+    </p>
+    <p>
+      |
+    </p>
+    <p>Aluskaart: Maa-amet</p>
+    <p>
+      |
+    </p>
+    <p>
+      © "Sütiste tee kaitseks" algatusrühm
     </p>
     <p>
       |

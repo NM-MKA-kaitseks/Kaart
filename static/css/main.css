@@ -8,14 +8,15 @@ eeskujul.
   top: 0;
   left: 0;
   right: 0;
-  height: 10em;
+  height: 12em;
   margin-bottom: 1em;
   padding-left: 1em;
+  padding-top: 1em;
 }
 
 #Kaart {
 	position: fixed;
-	top: calc(11em);
+	top: calc(13em);
   bottom: calc(5em);
 	left: 0;
   right: 0;
@@ -37,10 +38,20 @@ eeskujul.
   justify-content: space-between;
 }
 
-#Pealkiri {
+.tekstileht {
+  padding: 2em;
+}
+
+.Pealkiri {
   font-family: 'Roboto', sans-serif;
   font-size: 2em;
   color: darkslategrey;
+}
+
+p, ul, li {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
 }
 
 .leaflet-popup-content {
@@ -250,14 +261,3 @@ a.leaflet-control-about-close:hover {
 .ikoon { font-family: 'Material Icons';
   font-size: 48px;
 }
-
-/* Nupud */
-.nupp { margin: 0.5rem 0.5rem;
-  cursor: pointer;
-  color: darkgray;
-}
-.disabled { 
-  color: Gainsboro !important;
-  cursor: auto;
-}
-

@@ -51,94 +51,119 @@ initBasemaps(config.basemaps);
 
 // kuvaMarkerid();
 
-// Create a semi-transparent bus icon
-var stumpIcon = L.IconMaterial.icon({
+// Natura 2000 ala ikoon
+var naturaIcon = L.IconMaterial.icon({
   icon: 'error',            // Name of Material icon
   iconColor: 'white',              // Material icon color (could be rgba, hex, html name...)
-  markerColor: 'rgba(255,0,0,0.5)',  // Marker fill color
+  markerColor: 'tomato',  // Marker fill color
   outlineColor: 'yellow',            // Marker outline color
   outlineWidth: 1,                   // Marker outline width 
   iconSize: [31, 42]                 // Width and height of the icon
 })
 
-// Kuva punktid GPX-failist.
-var gpx = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Testandmed/main/ANDMED_02.gpx';
-new L.GPX(gpx, {
+// Rahumäe metsa ikoon
+var rahumaeIcon = L.IconMaterial.icon({
+  icon: 'error',            // Name of Material icon
+  iconColor: 'white',              // Material icon color (could be rgba, hex, html name...)
+  markerColor: 'green',  // Marker fill color
+  outlineColor: 'yellow',            // Marker outline color
+  outlineWidth: 1,                   // Marker outline width 
+  iconSize: [31, 42]                 // Width and height of the icon
+})
+
+// Pesapuu ikoon
+var nesttreeIcon = L.IconMaterial.icon({
+  icon: 'info',            // Name of Material icon
+  iconColor: 'wheat',              // Material icon color (could be rgba, hex, html name...)
+  markerColor: 'saddlebrown',  // Marker fill color
+  outlineColor: 'yellow',            // Marker outline color
+  outlineWidth: 1,                   // Marker outline width 
+  iconSize: [31, 42]                 // Width and height of the icon
+})
+
+// Kuva pesapuu.
+var pesapuu = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Nature/Pesapuu.gpx';
+new L.GPX(pesapuu, {
   async: true,
   parseElements: ['waypoint'],
   marker_options: {
     wptIcons: {
-      '': stumpIcon
+      '': nesttreeIcon
     }
   }
 }).on('loaded', function(e) {
   map.fitBounds(e.target.getBounds());
 }).addTo(map);
 
-// KuvaMarkerid() kuvab kõik markerid.
-function kuvaMarkerid() {
-  pMap.forEach(
-    (p) => {
-      kuvaPunkt(p.nimi, 1.0, markerOnClick);
+// Kuva punktid GPX-failidest - Nr 1 (Natura).
+var gpx = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Nature/Nr-1.gpx';
+new L.GPX(gpx, {
+  async: true,
+  parseElements: ['waypoint'],
+  marker_options: {
+    wptIcons: {
+      '': naturaIcon
     }
-  );
- }
-
-// kuvaPunkt otsib mäpist pMap punkti nimi ja loob sellele vastava markeri.
-// Kui marker on juba olemas, siis muudab ainult läbipaistmatust.
-// Teise parameetrina anda läbipaistmatus. Kandidaadi läbipaistmatus on 0.5;
-// marsruudi tavalise punkti läbipaistmatus on 1.0.
-// Kolmas parameeter on punkti markerile klõpsamist käsitlev funktsioon. Kui markerile on juba
-// varem lisatud käsitlev f-n, siis see see asendatatakse. 
-function kuvaPunkt(nimi, opacity, handler) {
-  console.debug('kuvaPunkt: ', nimi, opacity);
-  // Otsi mäpist punkt.
-  p = pMap.get(nimi);
-  // Kontrolli, kas marker on juba olemas.
-  if (p.visible) {
-    // Järgmised toimingud on idempotentsed.
-    // Muuda läbipaistmatust.
-    p.marker.setOpacity(opacity);
-    // Eemalda võimalikud eelmised käsitlejad.
-    p.marker.off();
-    console.log("Eemaldan eelmised käsitlejad: " + nimi);
-    // Lisa markerivajutuse käsitleja.
-    p.marker.on('click', handler);
-    // Märgi markeri loomine või muutmine mäpis pMap.
-    pMap.set(nimi,
-      {
-        nimi: p.nimi,
-        loc: p.loc,
-        visible: true,
-        opacity: opacity,
-        marker: p.marker
-      }
-    );
-  } else {
-    // Defineeri marker.
-    var m = L.marker(
-      p.loc,
-      {
-        title: p.nimi,
-        opacity: opacity
-      }
-    );
-    // Lisa marker kaardile.  
-    m.addTo(map);
-    // Märgi markeri loomine mäpis pMap.
-    pMap.set(nimi,
-      {
-        nimi: p.nimi,
-        loc: p.loc,
-        visible: true,
-        opacity: opacity,
-        marker: m
-      }
-    );
-    // Lisa markerivajutuse käsitleja.
-    m.on('click', handler);
   }
-}
+}).on('loaded', function(e) {
+  map.fitBounds(e.target.getBounds());
+}).addTo(map);
+
+// Kuva punktid GPX-failidest - Nr 2 (Natura).
+var gpx = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Nature/Nr-2.gpx';
+new L.GPX(gpx, {
+  async: true,
+  parseElements: ['waypoint'],
+  marker_options: {
+    wptIcons: {
+      '': naturaIcon
+    }
+  }
+}).on('loaded', function(e) {
+  map.fitBounds(e.target.getBounds());
+}).addTo(map);
+
+// Kuva punktid GPX-failidest - Nr 3 (Natura).
+var gpx = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Nature/Nr-3.gpx';
+new L.GPX(gpx, {
+  async: true,
+  parseElements: ['waypoint'],
+  marker_options: {
+    wptIcons: {
+      '': naturaIcon
+    }
+  }
+}).on('loaded', function(e) {
+  map.fitBounds(e.target.getBounds());
+}).addTo(map);
+
+// Kuva punktid GPX-failidest - Nr 4 (Rahumäe).
+var gpx = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Nature/Nr-4.gpx';
+new L.GPX(gpx, {
+  async: true,
+  parseElements: ['waypoint'],
+  marker_options: {
+    wptIcons: {
+      '': rahumaeIcon
+    }
+  }
+}).on('loaded', function(e) {
+  map.fitBounds(e.target.getBounds());
+}).addTo(map);
+
+// Kuva punktid GPX-failidest - Nr 5 (Natura).
+var gpx = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Nature/Nr-5.gpx';
+new L.GPX(gpx, {
+  async: true,
+  parseElements: ['waypoint'],
+  marker_options: {
+    wptIcons: {
+      '': naturaIcon
+    }
+  }
+}).on('loaded', function(e) {
+  map.fitBounds(e.target.getBounds());
+}).addTo(map);
 
 // markerOnClick käivitub markerile klõpsamisel. Kuvab teabe punkti kohta.
 function markerOnClick(e) {
