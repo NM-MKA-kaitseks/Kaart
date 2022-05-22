@@ -2,4 +2,4 @@
 
 Nõmme-Mustamäe maastikukaitsealal 2022 raiutud puude kaart
 
-Kasutamine: [https://NM-MKA.github.io/Kaart/](https://NM-MKA.github.io/Kaart/)
+Kasutamine: [https://nm-mka-kaitseks.github.io/Kaart/](https://nm-mka-kaitseks.github.io/Kaart/)
