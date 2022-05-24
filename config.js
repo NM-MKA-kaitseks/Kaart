@@ -1,5 +1,10 @@
 var config =
 {
-  "map": { "minZoom": 3, "maxZoom": 14, "title": "Jõulinnakud" },
-  "basemaps": ["hybrid", "kaart"]
+  "map": { "minZoom": 3, "maxZoom": 14, "title": "N-M MKA" },
+  "basemaps": ["hybrid", "kaart"],
+  "thema": [
+    {
+      
+    }
+  ]
 };

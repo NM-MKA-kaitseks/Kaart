@@ -8,7 +8,7 @@ eeskujul.
   top: 0;
   left: 0;
   right: 0;
-  height: 12em;
+  height: 16em;
   margin-bottom: 1em;
   padding-left: 1em;
   padding-top: 1em;
@@ -16,7 +16,7 @@ eeskujul.
 
 #Kaart {
 	position: fixed;
-	top: calc(13em);
+	top: calc(17em);
   bottom: calc(5em);
 	left: 0;
   right: 0;
@@ -36,6 +36,10 @@ eeskujul.
   display: flex;
   /* flex-flow: row wrap; */
   justify-content: space-between;
+}
+
+.legendIcon {
+  height: 1em;
 }
 
 .tekstileht {

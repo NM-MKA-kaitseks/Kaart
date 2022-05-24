@@ -51,6 +51,8 @@ initBasemaps(config.basemaps);
 
 // Kuva Natura 2000 ala piir
 
+// Käsitsi variant
+/*
 var latlngs = [
 [59.396958, 24.696348],
 [59.396398, 24.694604],
@@ -77,6 +79,33 @@ var latlngs = [
 ];
 
 var natura2000Border = L.polygon(latlngs, {color: 'red'}).addTo(map);
+*/
+
+// Lisa Natura 2000 alad.
+var natura2000Layer = L.tileLayer.wms(
+  'https://gsavalik.envir.ee/geoserver/eelis/ows?', {
+    layers: 'kr_loodusala',
+    format: 'image/png',
+    // style: 'kkr.n2k.default',
+    style: 'line',
+    transparent: true,
+    zIndex: 20
+  }
+).addTo(map);
+
+// Lisa kaitsealad
+
+var natura2000Layer = L.tileLayer.wms(
+  'https://gsavalik.envir.ee/geoserver/eelis/ows?', {
+    layers: 'kr_kaitseala',
+    format: 'image/png',
+    style: 'polygon',
+    // style: 'eelis:kkr.kaitseala.lipik',
+    transparent: true,
+    zIndex: 21
+  }
+).addTo(map);
+
 
 // Natura 2000 ala ikoon
 var naturaIcon = L.IconMaterial.icon({
