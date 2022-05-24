@@ -45,7 +45,7 @@ layerControl.addTo(map);
 
 var aboutWindow = L.control.about();
 
-// updateMap(config.map);
+updateMap(config.map);
 
 initBasemaps(config.basemaps);
 

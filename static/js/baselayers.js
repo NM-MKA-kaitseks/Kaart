@@ -33,6 +33,19 @@ var kaartwms = L.tileLayer.wms(
   }
 );
 
+// Lisatud 24.05.2022
+var kaarthall = L.tileLayer.wms(
+  'https://kaart.maaamet.ee/wms/hallkaart',
+  {
+    continuousWorld: false,
+    minZoom: 14,
+    maxZoom: 20,
+    version: '1.1.1',
+    attribution: 'Aluskaart: <a href="https://www.maaamet.ee" ' + 
+    'target="_blank" rel="noopener noreferrer">Maa-Amet</a>'
+  }
+)
+
 // Hübriid (ortofoto + hybriid).
 var hybrid_orthotile = L.tileLayer(
   'https://tiles.maaamet.ee/tm/tms/1.0.0/foto/{z}/{x}/{-y}.png',
@@ -93,7 +106,12 @@ var _baselayers = {
   },
   "kaart": {
     "title": "Aluskaart",
+    // Lisatud 24.05.2022: kaarthall.
     "constructor": L.layerGroup([kaarttile, kaartwms])
+  },
+  "piirid": {
+    "title": "Piirid",
+    "constructor": L.layerGroup([kaarthall])
   }
 };
 
