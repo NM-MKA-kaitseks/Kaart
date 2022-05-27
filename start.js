@@ -30,7 +30,7 @@ var map = L.map(
     center: L.latLng(59.375150, 24.717757),
     zoom: 10, // Oli: 7.
     minZoom: 3,
-    maxZoom: 18,
+    maxZoom: 24,
     maxBounds: L.latLngBounds(
       [[53.87677644829216, 17.023771159524344],
       [62.85582385242469, 35.106036681873526]]),
@@ -49,38 +49,6 @@ updateMap(config.map);
 
 initBasemaps(config.basemaps);
 
-// Kuva Natura 2000 ala piir
-
-// Käsitsi variant
-/*
-var latlngs = [
-[59.396958, 24.696348],
-[59.396398, 24.694604],
-[59.39603, 24.69288],
-[59.395678, 24.690533],
-[59.395304, 24.687635],
-[59.394271, 24.688255],
-[59.393997, 24.68857],
-[59.393026, 24.689314],
-[59.392748, 24.692001],
-[59.392503, 24.692341],
-[59.391554, 24.694382],
-[59.391333, 24.695125],
-[59.391914, 24.695211],
-[59.392675, 24.696351],
-[59.392938, 24.697957],
-[59.39301, 24.699371],
-[59.39335, 24.701685],
-[59.394252, 24.702106],
-[59.394058, 24.698423],
-[59.395265, 24.698226],
-[59.396311, 24.696819],
-[59.396402, 24.697051]
-];
-
-var natura2000Border = L.polygon(latlngs, {color: 'red'}).addTo(map);
-*/
-
 // Lisa Natura 2000 alad.
 var natura2000Layer = L.tileLayer.wms(
   'https://gsavalik.envir.ee/geoserver/eelis/ows?', {
@@ -94,7 +62,6 @@ var natura2000Layer = L.tileLayer.wms(
 ).addTo(map);
 
 // Lisa kaitsealad
-
 var natura2000Layer = L.tileLayer.wms(
   'https://gsavalik.envir.ee/geoserver/eelis/ows?', {
     layers: 'kr_kaitseala',
@@ -106,23 +73,22 @@ var natura2000Layer = L.tileLayer.wms(
   }
 ).addTo(map);
 
-
-// Natura 2000 ala ikoon
-var naturaIcon = L.IconMaterial.icon({
-  icon: 'error',            // Name of Material icon
+// Hävitatud puu ikoon
+var treeIcon = L.IconMaterial.icon({
+  icon: 'cancel',            // Name of Material icon
   iconColor: 'white',              // Material icon color (could be rgba, hex, html name...)
-  markerColor: 'tomato',  // Marker fill color
+  markerColor: 'saddlebrown',  // Marker fill color
   outlineColor: 'yellow',            // Marker outline color
   outlineWidth: 1,                   // Marker outline width 
   iconSize: [31, 42]                 // Width and height of the icon
 })
 
-// Rahumäe metsa ikoon
-var rahumaeIcon = L.IconMaterial.icon({
-  icon: 'error',            // Name of Material icon
+// Kuklasepesa ikoon
+var kuklaseIcon = L.IconMaterial.icon({
+  icon: 'cancel',            // Name of Material icon
   iconColor: 'white',              // Material icon color (could be rgba, hex, html name...)
-  markerColor: 'green',  // Marker fill color
-  outlineColor: 'yellow',            // Marker outline color
+  markerColor: 'peachpuff',  // Marker fill color
+  outlineColor: 'hotpink',            // Marker outline color
   outlineWidth: 1,                   // Marker outline width 
   iconSize: [31, 42]                 // Width and height of the icon
 })
@@ -131,11 +97,53 @@ var rahumaeIcon = L.IconMaterial.icon({
 var nesttreeIcon = L.IconMaterial.icon({
   icon: 'info',            // Name of Material icon
   iconColor: 'wheat',              // Material icon color (could be rgba, hex, html name...)
-  markerColor: 'saddlebrown',  // Marker fill color
+  markerColor: 'red',  // Marker fill color
   outlineColor: 'yellow',            // Marker outline color
   outlineWidth: 1,                   // Marker outline width 
   iconSize: [31, 42]                 // Width and height of the icon
 })
+
+// Kuva punktid GPX-failidest - 22.05.2022 mõõtmised.
+var gpx = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Nature/20220522-KOKKU.gpx';
+new L.GPX(gpx, {
+  async: true,
+  parseElements: ['waypoint'],
+  marker_options: {
+    wptIcons: {
+      '': treeIcon
+    }
+  }
+}).on('loaded', function(e) {
+  map.fitBounds(e.target.getBounds());
+}).addTo(map);
+
+// Kuva punktid GPX-failidest - 26.05.2022 kändude mõõtmised.
+var gpx = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Teine/20220526-KOKKU.gpx';
+new L.GPX(gpx, {
+  async: true,
+  parseElements: ['waypoint'],
+  marker_options: {
+    wptIcons: {
+      '': treeIcon
+    }
+  }
+}).on('loaded', function(e) {
+  map.fitBounds(e.target.getBounds());
+}).addTo(map);
+
+// Kuva punktid GPX-failidest - Kuklasepesad.
+var gpx = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Teine/Kuklasepesad-KOKKU.gpx';
+new L.GPX(gpx, {
+  async: true,
+  parseElements: ['waypoint'],
+  marker_options: {
+    wptIcons: {
+      '': kuklaseIcon
+    }
+  }
+}).on('loaded', function(e) {
+  map.fitBounds(e.target.getBounds());
+}).addTo(map);
 
 // Kuva pesapuu.
 var pesapuu = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Nature/Pesapuu.gpx';
@@ -145,76 +153,6 @@ new L.GPX(pesapuu, {
   marker_options: {
     wptIcons: {
       '': nesttreeIcon
-    }
-  }
-}).on('loaded', function(e) {
-  map.fitBounds(e.target.getBounds());
-}).addTo(map);
-
-// Kuva punktid GPX-failidest - Nr 1 (Natura).
-var gpx = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Nature/Nr-1.gpx';
-new L.GPX(gpx, {
-  async: true,
-  parseElements: ['waypoint'],
-  marker_options: {
-    wptIcons: {
-      '': naturaIcon
-    }
-  }
-}).on('loaded', function(e) {
-  map.fitBounds(e.target.getBounds());
-}).addTo(map);
-
-// Kuva punktid GPX-failidest - Nr 2 (Natura).
-var gpx = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Nature/Nr-2.gpx';
-new L.GPX(gpx, {
-  async: true,
-  parseElements: ['waypoint'],
-  marker_options: {
-    wptIcons: {
-      '': naturaIcon
-    }
-  }
-}).on('loaded', function(e) {
-  map.fitBounds(e.target.getBounds());
-}).addTo(map);
-
-// Kuva punktid GPX-failidest - Nr 3 (Natura).
-var gpx = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Nature/Nr-3.gpx';
-new L.GPX(gpx, {
-  async: true,
-  parseElements: ['waypoint'],
-  marker_options: {
-    wptIcons: {
-      '': naturaIcon
-    }
-  }
-}).on('loaded', function(e) {
-  map.fitBounds(e.target.getBounds());
-}).addTo(map);
-
-// Kuva punktid GPX-failidest - Nr 4 (Rahumäe).
-var gpx = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Nature/Nr-4.gpx';
-new L.GPX(gpx, {
-  async: true,
-  parseElements: ['waypoint'],
-  marker_options: {
-    wptIcons: {
-      '': rahumaeIcon
-    }
-  }
-}).on('loaded', function(e) {
-  map.fitBounds(e.target.getBounds());
-}).addTo(map);
-
-// Kuva punktid GPX-failidest - Nr 5 (Natura).
-var gpx = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Nature/Nr-5.gpx';
-new L.GPX(gpx, {
-  async: true,
-  parseElements: ['waypoint'],
-  marker_options: {
-    wptIcons: {
-      '': naturaIcon
     }
   }
 }).on('loaded', function(e) {

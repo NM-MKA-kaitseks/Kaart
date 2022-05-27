@@ -38,6 +38,13 @@ eeskujul.
   justify-content: space-between;
 }
 
+.EN {
+  text-transform: capitalize;
+  color: hotpink;
+  font-size: 0.8em;
+  vertical-align: super;
+}
+
 .legendIcon {
   height: 1em;
 }
