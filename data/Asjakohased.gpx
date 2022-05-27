@@ -1,0 +1,53 @@
+
+<?xml version="1.0"?>
+<gpx version="1.1" creator="GDAL 2.2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogr="http://osgeo.org/gdal" xmlns="http://www.topografix.com/GPX/1/1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata><bounds minlat="59.351800829368003" minlon="24.550349116543337" maxlat="59.591577246963908" maxlon="24.926283826078784"/></metadata>                  
+
+<trk>
+  <extensions>
+    <ogr:TUNNUS>78405:502:1760</ogr:TUNNUS>
+    <ogr:HKOOD>0482</ogr:HKOOD>
+    <ogr:MK_NIMI>Harju maakond</ogr:MK_NIMI>
+    <ogr:OV_NIMI>Tallinn</ogr:OV_NIMI>
+    <ogr:AY_NIMI>Mustam?e linnaosa</ogr:AY_NIMI>
+    <ogr:L_AADRESS>Ehitajate tee 2</ogr:L_AADRESS>
+    <ogr:REGISTR>1999/02/05</ogr:REGISTR>
+    <ogr:MUUDET>2018/12/21</ogr:MUUDET>
+    <ogr:SIHT1>Elamumaa</ogr:SIHT1>
+    <ogr:SO_PRTS1>100</ogr:SO_PRTS1>
+    <ogr:SO_PRTS2>0</ogr:SO_PRTS2>
+    <ogr:SO_PRTS3>0</ogr:SO_PRTS3>
+    <ogr:PINDALA>1848.0</ogr:PINDALA>
+    <ogr:RUUMPIND>1848.0</ogr:RUUMPIND>
+    <ogr:REG_YHIK>M</ogr:REG_YHIK>
+    <ogr:HARITAV>0.0</ogr:HARITAV>
+    <ogr:ROHUMAA>0.0</ogr:ROHUMAA>
+    <ogr:METS>184.0</ogr:METS>
+    <ogr:OUEMAA>0.0</ogr:OUEMAA>
+    <ogr:MUUMAA>1664.0</ogr:MUUMAA>
+    <ogr:KINNISTU>1436601</ogr:KINNISTU>
+    <ogr:MOOTVIIS>konverteeritud, transformeeritud</ogr:MOOTVIIS>
+    <ogr:MOOTJA>AS E.O.MAP</ogr:MOOTJA>
+    <ogr:OMVIIS>K? vastavusseviimine uue seadusega</ogr:OMVIIS>
+    <ogr:OMVORM>Eraomand</ogr:OMVORM>
+    <ogr:MAKS_HIND>36610.0</ogr:MAKS_HIND>
+    <ogr:MARKETEKST>-</ogr:MARKETEKST>
+    <ogr:EKSPORT>2022/05/27</ogr:EKSPORT>
+  </extensions>
+  <trkseg>
+    <trkpt lat="59.392317314800906" lon="24.678975546723183">
+    </trkpt>
+    <trkpt lat="59.392344550673208" lon="24.679072887748891">
+    </trkpt>
+    <trkpt lat="59.392366508919714" lon="24.679774687638247">
+    </trkpt>
+    <trkpt lat="59.392000025166226" lon="24.679818797472723">
+    </trkpt>
+    <trkpt lat="59.391980122846178" lon="24.679014438453468">
+    </trkpt>
+    <trkpt lat="59.392317314800906" lon="24.678975546723183">
+    </trkpt>
+  </trkseg>
+</trk>
+
+</gpx>

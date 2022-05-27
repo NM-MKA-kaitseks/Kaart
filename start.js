@@ -159,6 +159,34 @@ new L.GPX(pesapuu, {
   map.fitBounds(e.target.getBounds());
 }).addTo(map);
 
+// Kuva asjaomased katastriüksused.
+var ehitajatetee2 = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Kat/Asjakohased.gpx';
+new L.GPX(ehitajatetee2, {
+  polyline_options: {
+    color: 'red',
+    opacity: 0.75,
+    weight: 3
+  },
+  async: true,
+  parseElements: ['track']
+}).on('loaded', function(e) {
+  map.fitBounds(e.target.getBounds());
+}).addTo(map);
+
+// Kuva kaitseala katastriüksused.
+var kaitseala = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Kat/Kaitseala.gpx';
+new L.GPX(kaitseala, {
+  async: true,
+  parseElements: ['track'],
+  polyline_options: {
+    color: 'green',
+    weight: 3
+  }
+}).on('loaded', function(e) {
+  map.fitBounds(e.target.getBounds());
+}).addTo(map);
+
+
 // markerOnClick käivitub markerile klõpsamisel. Kuvab teabe punkti kohta.
 function markerOnClick(e) {
   console.debug("Klõpsatud markerile: " + this.options.title);
