@@ -159,6 +159,7 @@ new L.GPX(pesapuu, {
   map.fitBounds(e.target.getBounds());
 }).addTo(map);
 
+/*
 // Kuva asjaomased katastriüksused.
 var ehitajatetee2 = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Kat/Asjakohased.gpx';
 new L.GPX(ehitajatetee2, {
@@ -172,6 +173,7 @@ new L.GPX(ehitajatetee2, {
 }).on('loaded', function(e) {
   map.fitBounds(e.target.getBounds());
 }).addTo(map);
+*/
 
 // Kuva MKA piir.
 
