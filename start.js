@@ -62,7 +62,7 @@ var natura2000Layer = L.tileLayer.wms(
 ).addTo(map);
 
 // Lisa kaitsealad
-var natura2000Layer = L.tileLayer.wms(
+var kaitsealad = L.tileLayer.wms(
   'https://gsavalik.envir.ee/geoserver/eelis/ows?', {
     layers: 'kr_kaitseala',
     format: 'image/png',
@@ -173,6 +173,28 @@ new L.GPX(ehitajatetee2, {
   map.fitBounds(e.target.getBounds());
 }).addTo(map);
 
+// Kuva MKA piir.
+
+fetch("data/MKA.geojson")
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    // use geoJSON. Vt: https://leafletjs.com/examples/geojson/,
+    // sh stiili määramine.
+    L.geoJSON(data, {
+      style: {
+        color: 'green',
+        weight: 3,
+        fillColor: 'green',
+        fillOpacity: 0
+      },
+      interactive: false
+      // onEachFeature: onEachFeature,
+    }).addTo(map);
+  });
+
+/*
 // Kuva kaitseala katastriüksused.
 var kaitseala = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Kat/Kaitseala.gpx';
 new L.GPX(kaitseala, {
@@ -185,7 +207,7 @@ new L.GPX(kaitseala, {
 }).on('loaded', function(e) {
   map.fitBounds(e.target.getBounds());
 }).addTo(map);
-
+*/
 
 // markerOnClick käivitub markerile klõpsamisel. Kuvab teabe punkti kohta.
 function markerOnClick(e) {
