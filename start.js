@@ -52,25 +52,25 @@ initBasemaps(config.basemaps);
 // Lisa Natura 2000 alad.
 var natura2000Layer = L.tileLayer.wms(
   'https://gsavalik.envir.ee/geoserver/eelis/ows?', {
-    layers: 'kr_loodusala',
-    format: 'image/png',
-    // style: 'kkr.n2k.default',
-    style: 'line',
-    transparent: true,
-    zIndex: 20
-  }
+  layers: 'kr_loodusala',
+  format: 'image/png',
+  // style: 'kkr.n2k.default',
+  style: 'line',
+  transparent: true,
+  zIndex: 20
+}
 ).addTo(map);
 
 // Lisa kaitsealad
 var kaitsealad = L.tileLayer.wms(
   'https://gsavalik.envir.ee/geoserver/eelis/ows?', {
-    layers: 'kr_kaitseala',
-    format: 'image/png',
-    style: 'polygon',
-    // style: 'eelis:kkr.kaitseala.lipik',
-    transparent: true,
-    zIndex: 21
-  }
+  layers: 'kr_kaitseala',
+  format: 'image/png',
+  style: 'polygon',
+  // style: 'eelis:kkr.kaitseala.lipik',
+  transparent: true,
+  zIndex: 21
+}
 ).addTo(map);
 
 // Hävitatud puu ikoon
@@ -113,7 +113,7 @@ new L.GPX(gpx, {
       '': treeIcon
     }
   }
-}).on('loaded', function(e) {
+}).on('loaded', function (e) {
   map.fitBounds(e.target.getBounds());
 }).addTo(map);
 
@@ -127,7 +127,7 @@ new L.GPX(gpx, {
       '': treeIcon
     }
   }
-}).on('loaded', function(e) {
+}).on('loaded', function (e) {
   map.fitBounds(e.target.getBounds());
 }).addTo(map);
 
@@ -141,7 +141,7 @@ new L.GPX(gpx, {
       '': kuklaseIcon
     }
   }
-}).on('loaded', function(e) {
+}).on('loaded', function (e) {
   map.fitBounds(e.target.getBounds());
 }).addTo(map);
 
@@ -155,25 +155,9 @@ new L.GPX(pesapuu, {
       '': nesttreeIcon
     }
   }
-}).on('loaded', function(e) {
+}).on('loaded', function (e) {
   map.fitBounds(e.target.getBounds());
 }).addTo(map);
-
-/*
-// Kuva asjaomased katastriüksused.
-var ehitajatetee2 = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Kat/Asjakohased.gpx';
-new L.GPX(ehitajatetee2, {
-  polyline_options: {
-    color: 'red',
-    opacity: 0.75,
-    weight: 3
-  },
-  async: true,
-  parseElements: ['track']
-}).on('loaded', function(e) {
-  map.fitBounds(e.target.getBounds());
-}).addTo(map);
-*/
 
 // Kuva MKA piir.
 
@@ -196,20 +180,32 @@ fetch("data/MKA.geojson")
     }).addTo(map);
   });
 
-/*
-// Kuva kaitseala katastriüksused.
-var kaitseala = 'https://raw.githubusercontent.com/NM-MKA-kaitseks/Ruumiandmed/main/Kat/Kaitseala.gpx';
-new L.GPX(kaitseala, {
-  async: true,
-  parseElements: ['track'],
-  polyline_options: {
-    color: 'green',
-    weight: 3
-  }
-}).on('loaded', function(e) {
-  map.fitBounds(e.target.getBounds());
-}).addTo(map);
-*/
+// Lisa katastriüksused.
+
+function katPopup(feature, layer) {
+  var content = feature.properties.TUNNUS + " " +
+    feature.properties.L_AADRESS + " " + feature.properties.OMVORM;
+  layer.bindPopup(content);
+}
+
+fetch("data/N_M_KAT.geojson")
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    // use geoJSON. Vt: https://leafletjs.com/examples/geojson/,
+    // sh stiili määramine.
+    L.geoJSON(data, {
+      style: {
+        color: 'tomato',
+        weight: 1,
+        fillColor: 'green',
+        fillOpacity: 0
+      },
+      onEachFeature: katPopup,
+    }).addTo(map);
+  });
+
 
 // markerOnClick käivitub markerile klõpsamisel. Kuvab teabe punkti kohta.
 function markerOnClick(e) {
