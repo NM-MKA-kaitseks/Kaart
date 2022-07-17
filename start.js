@@ -159,6 +159,12 @@ new L.GPX(pesapuu, {
   map.fitBounds(e.target.getBounds());
 }).addTo(map);
 
+// 17.07.2022 Kuva eraldi mõõdetud känd. Kahtlusalune.
+/* L.marker([59.38952385, 24.67766481], {
+
+}).setZIndexOffset(1000).addTo(map);
+*/
+
 // Kuva MKA piir.
 
 fetch("data/MKA.geojson")
